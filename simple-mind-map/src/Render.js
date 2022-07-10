@@ -202,7 +202,7 @@ class Render {
             this.startTextEdit()
         })
         this.mindMap.on('hide_text_edit', () => {
-            this.endTextEdit()
+            this.endTextEdit() 
         })
         // 全选
         this.mindMap.keyCommand.addShortcut('Control+a', () => {

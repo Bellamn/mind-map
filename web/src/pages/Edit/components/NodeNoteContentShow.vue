@@ -1,7 +1,17 @@
+<!--
+ * @Author: Deng Yuhang
+ * @Date: 2022-07-08 22:28:08
+ * @LastEditors: Deng Yuhang
+ * @LastEditTime: 2022-07-11 00:59:42
+ * @Description: 
+-->
 <template>
   <div
     class="noteContentViewer"
     ref="noteContentViewer"
+    @click="handleMouseEnter"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
     :style="{ left: this.left + 'px', top: this.top + 'px', visibility: show ? 'visible' : 'hidden' }"
   ></div>
 </template>
@@ -23,6 +33,7 @@ export default {
       show: false,
       left: 0,
       top: 0,
+      isMouseOver:false,
     };
   },
   created() {
@@ -33,7 +44,7 @@ export default {
       this.show = true;
     });
     this.$bus.$on("hideNoteContent", () => {
-      this.show = false;
+      !this.isMouseOver && (this.show = false)
     });
   },
   mounted() {
@@ -52,6 +63,17 @@ export default {
         });
       }
     },
+
+    handleMouseEnter(){  
+      console.log('mouseenter')
+      this.isMouseOver = true 
+      this.show = true
+    },
+    handleMouseLeave(){
+      console.log('mouseleave')
+      this.isMouseOver = false;
+      this.show = false
+    }
   },
 };
 </script>
