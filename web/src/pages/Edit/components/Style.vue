@@ -289,6 +289,7 @@ export default {
   },
   created() {
     this.$bus.$on("node_active", (...args) => {
+      if(this.$refs.sidebar){
       this.$refs.sidebar.show = false;
       this.$nextTick(() => {
         this.activeTab = "normal";
@@ -296,6 +297,7 @@ export default {
         this.$refs.sidebar.show = this.activeNodes.length > 0;
         this.initNodeStyle();
       });
+      }
     });
   },
   methods: {

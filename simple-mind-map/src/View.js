@@ -65,11 +65,19 @@ class View {
         // 放大缩小视图
         this.mindMap.event.on('mousewheel', (e, dir) => {
             // // 放大
-            if (dir === 'down') {
-                this.enlarge()
-            } else { // 缩小
-                this.narrow()
+            if(e.ctrlKey){
+                e.deltaY > 0 && this.narrow()
+                e.deltaY < 0 && this.enlarge()
+            }else{
+                this.x = this.x - e.deltaX
+                this.y = this.x - e.deltaY
+                this.transform()
             }
+            // if (dir === 'down') {
+            //     this.enlarge()
+            // } else { // 缩小
+            //     this.narrow()
+            // }
         })
     }
 

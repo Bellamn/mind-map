@@ -56,8 +56,8 @@ export default {
 .countContainer {
   padding: 0 12px;
   position: fixed;
-  left: 20px;
-  bottom: 20px;
+  right: 20px;
+  bottom: 70px;
   background: hsla(0, 0%, 100%, 0.8);
   border-radius: 2px;
   opacity: 0.8;

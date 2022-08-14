@@ -873,7 +873,41 @@ const rootData = {
     }
 }
 
-export default {
+export const exeample1 = {
+    ...data1,
+    // ...data2,
+    // ...data3,
+    // ...data4,
+    // ...rootData,
+    "theme": {
+        "template": "minions",
+        "config": {
+            // 自定义配置...
+        }
+    },
+    "layout": "logicalStructure",
+    // "layout": "mindMap",
+    // "layout": "catalogOrganization"
+    // "layout": "organizationStructure"
+}
+export const exeample2 = {
+    // ...data1,
+    ...data2,
+    // ...data3,
+    // ...data4,
+    // ...rootData,
+    "theme": {
+        "template": "minions",
+        "config": {
+            // 自定义配置...
+        }
+    },
+    // "layout": "logicalStructure",
+    "layout": "mindMap",
+    // "layout": "catalogOrganization"
+    // "layout": "organizationStructure"
+}
+export const exeample3 = {
     // ...data1,
     // ...data2,
     ...data3,
@@ -889,4 +923,38 @@ export default {
     // "layout": "mindMap",
     // "layout": "catalogOrganization"
     // "layout": "organizationStructure"
+}
+export const exeample4 = {
+    // ...data1,
+    // ...data2,
+    // ...data3,
+    ...data4,
+    // ...rootData,
+    "theme": {
+        "template": "minions",
+        "config": {
+            // 自定义配置...
+        }
+    },
+    // "layout": "logicalStructure",
+    // "layout": "mindMap",
+    // "layout": "catalogOrganization"
+    "layout": "organizationStructure"
+}
+export const exeample5 = {
+    // ...data1,
+    // ...data2,
+    // ...data3,
+    // ...data4,
+    ...rootData,
+    "theme": {
+        "template": "minions",
+        "config": {
+            // 自定义配置...
+        }
+    },
+    // "layout": "logicalStructure",
+    // "layout": "mindMap",
+    // "layout": "catalogOrganization"
+    "layout": "organizationStructure"
 }

@@ -1,6 +1,13 @@
+<!--
+ * @Author: Deng Yuhang
+ * @Date: 2022-07-08 22:28:08
+ * @LastEditors: Deng Yuhang
+ * @LastEditTime: 2022-08-14 20:39:16
+ * @Description: 
+-->
 <template>
   <div class="editContainer">
-    <div class="mindMapContainer" ref="mindMapContainer"></div>
+    <div :style="{transition: 'left 0.2s', left: leftMenuActiveKey === '' ? '50px': '350px'}" class="mindMapContainer" ref="mindMapContainer"></div>
     <Count></Count>
     <NavigatorToolbar :mindMap="mindMap"></NavigatorToolbar>
     <Outline></Outline>
@@ -10,6 +17,7 @@
     <Structure :mindMap="mindMap"></Structure>
     <ShortcutKey></ShortcutKey>
     <Contextmenu :mindMap="mindMap"></Contextmenu>
+    <LeftSideMenu :mindMap="mindMap"></LeftSideMenu>
     <NodeNoteContentShow></NodeNoteContentShow>
   </div>
 </template>
@@ -26,7 +34,9 @@ import NavigatorToolbar from './NavigatorToolbar'
 import ShortcutKey from './ShortcutKey'
 import Contextmenu from './Contextmenu'
 import NodeNoteContentShow from './NodeNoteContentShow.vue'
+import LeftSideMenu from './LeftSideMenu'
 import { getData, storeData, storeConfig } from '@/api'
+import { mapActions, mapState, mapMutations } from 'vuex'
 
 /**
  * @Author: 王林
@@ -45,19 +55,35 @@ export default {
     NavigatorToolbar,
     ShortcutKey,
     Contextmenu,
+    LeftSideMenu,
     NodeNoteContentShow
   },
   data() {
     return {
       mindMap: null,
-      mindMapData: null,
+      // mindMapData: null,
       prevImg: '',
       openTest: false
     }
   },
+  computed:{
+     ...mapState({
+      leftMenuActiveKey:'leftMenuActiveKey',
+      mindMapData:'mindMapData'
+     })
+  },
+  watch:{
+    mindMapData: function(){
+      console.log('init', this.mindMapData)
+      if(this.mindMap){
+        this.mindMapData && this.setData(this.mindMapData.root)
+        this.mindMap?.reRender()
+      }else{
+        this.mindMapData && this.init()
+      }
+    }
+  },
   mounted() {
-    this.getData()
-    this.init()
     this.$bus.$on('execCommand', this.execCommand)
     this.$bus.$on('export', this.export)
     this.$bus.$on('setData', this.setData)
@@ -263,7 +289,7 @@ export default {
 
   .mindMapContainer {
     position: absolute;
-    left: 0px;
+    left: 350px;
     top: 0px;
     width: 100%;
     height: 100%;

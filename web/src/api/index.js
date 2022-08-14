@@ -1,3 +1,10 @@
+/*
+ * @Author: Deng Yuhang
+ * @Date: 2022-07-08 22:28:08
+ * @LastEditors: Deng Yuhang
+ * @LastEditTime: 2022-07-16 21:52:01
+ * @Description: 
+ */
 import exampleData from "simple-mind-map/example/exampleData"
 import { simpleDeepClone } from 'simple-mind-map/src/utils/index'
 
@@ -60,6 +67,21 @@ export const storeData = (data) => {
  * @Desc: 存储思维导图配置数据 
  */
 export const storeConfig = (config) => {
+    try {
+        let originData = getData()
+        originData = {
+            ...originData,
+            ...config
+        }
+        let dataStr = JSON.stringify(originData)
+        localStorage.setItem(SIMPLE_MIND_MAP_DATA, dataStr)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getMenuTree = (userId) =>{
     try {
         let originData = getData()
         originData = {
